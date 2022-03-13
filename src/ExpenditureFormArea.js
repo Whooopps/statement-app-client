@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import autosize from "autosize";
 import moment from "moment";
-import { useListener } from "./effects/use-event";
+import { useListener, useDispatch } from "./effects/use-event";
 import { Events } from "./constants/Events";
 
 function ExpenditureFormArea({ monthValue }) {
@@ -16,6 +16,7 @@ function ExpenditureFormArea({ monthValue }) {
   const [expenseTotal, setExpenseTotal] = useState(0);
   const [nextMonthCF, setNextMonthCF] = useState(0);
   const [incomeTotal, setIncomeTotal] = useState(0);
+  const dispatcher = useDispatch();
 
   const currDate = moment().format("D-M-YYYY");
   const [inputList, setInputList] = useState([
@@ -93,6 +94,9 @@ function ExpenditureFormArea({ monthValue }) {
 
   const handleRemoveClick = (index) => {
     const list = [...inputList];
+    if (list[index].id != null) {
+      dispatcher(Events.EXPENSE_ID, list[index].id);
+    }
     list.splice(index, 1);
     setInputList(list);
   };

@@ -1,16 +1,36 @@
 import IncomeFormArea from "./IncomeFormArea";
 import ExpenditureFormArea from "./ExpenditureFormArea";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import moment from "moment";
+import { useListener } from "./effects/use-event";
+import { Events } from "./constants/Events";
 
 function App() {
   const fullDate = moment().format("YYYY-MM");
   const [monthValue, setMonthValue] = useState(fullDate);
+  const [incomeToDelete, setIncomeToDelete] = useState([]);
+  const [expenseToDelete, setExpenseToDelete] = useState([]);
   const handelMonthChange = (e) => {
     e.preventDefault();
     const value = e.target.value;
     setMonthValue(value);
   };
+
+  useListener(
+    Events.INCOME_ID,
+    useCallback((id) => {
+      return setIncomeToDelete((prevArray) => [...incomeToDelete, id]);
+    }),
+    []
+  );
+
+  useListener(
+    Events.EXPENSE_ID,
+    useCallback((id) => {
+      return setExpenseToDelete((prevArray) => [...expenseToDelete, id]);
+    }),
+    []
+  );
 
   const handleSumbit = (e) => {
     e.preventDefault();

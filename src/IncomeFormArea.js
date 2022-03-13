@@ -65,6 +65,9 @@ function IncomeFormArea({ monthValue }) {
 
   const handleRemoveClick = (index) => {
     const list = [...columnData];
+    if (list[index].id != null) {
+      dispatcher(Events.INCOME_ID, list[index].id);
+    }
     list.splice(index, 1);
     setColumnData(list);
   };
