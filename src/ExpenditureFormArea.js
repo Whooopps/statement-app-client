@@ -4,12 +4,10 @@ import moment from "moment";
 import { useListener } from "./effects/use-event";
 import { Events } from "./constants/Events";
 
-function ExpenditureFormArea(monthValue) {
-  const monthName = moment(monthValue.monthValue, "YYYY-MM").format(
-    "MMM, YYYY"
-  );
+function ExpenditureFormArea({ monthValue }) {
+  const monthName = moment(monthValue, "YYYY-MM").format("MMM, YYYY");
 
-  const nextMonth = moment(monthValue.monthValue, "YYYY-MM")
+  const nextMonth = moment(monthValue, "YYYY-MM")
     .add(1, "months")
     .format("MMMM, YYYY");
 
@@ -27,7 +25,7 @@ function ExpenditureFormArea(monthValue) {
       expenseDate: currDate,
       expenseAmount: 0,
       expenseReason: "",
-      createdAt: monthValue.monthValue,
+      createdAt: monthValue,
       id: null,
     },
   ]);
@@ -42,7 +40,7 @@ function ExpenditureFormArea(monthValue) {
         expenseDate: currDate,
         expenseAmount: 0,
         expenseReason: "",
-        createdAt: monthValue.monthValue,
+        createdAt: monthValue,
         id: null,
       },
     ]);

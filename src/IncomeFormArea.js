@@ -5,10 +5,8 @@ import { Events } from "./constants/Events";
 import { flatNo } from "./autocomplete-values/flatNumbers";
 import { NAMES } from "./autocomplete-values/names";
 
-function IncomeFormArea(monthValue) {
-  const monthName = moment(monthValue.monthValue, "YYYY-MM").format(
-    "MMM, YYYY"
-  );
+function IncomeFormArea({ monthValue }) {
+  const monthName = moment(monthValue, "YYYY-MM").format("MMM, YYYY");
   const currDate = moment().format("D-M-YYYY");
   const [total, setTotal] = useState(0);
   const [carryForward, setCarryForward] = useState(0);
@@ -18,7 +16,7 @@ function IncomeFormArea(monthValue) {
       flat: "",
       amount: 0,
       date: currDate,
-      createdAt: monthValue.monthValue,
+      createdAt: monthValue,
       id: null,
     },
   ]);
@@ -59,7 +57,7 @@ function IncomeFormArea(monthValue) {
         flat: "",
         amount: 0,
         date: currDate,
-        createdAt: monthValue.monthValue,
+        createdAt: monthValue,
         id: null,
       },
     ]);
