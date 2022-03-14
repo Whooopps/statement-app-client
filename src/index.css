@@ -224,3 +224,50 @@ input::-webkit-inner-spin-button {
 .btn-submit:hover {
   background-color: #4b86dead;
 }
+
+.flex-container {
+  display: flex;
+  height: auto;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  justify-content: flex-start;
+  margin-top: 20rem;
+  user-select: none;
+}
+
+.login {
+  line-height: 50px;
+  border-bottom: #10b981 1px solid;
+}
+
+.form {
+  margin-top: 10px;
+  padding: 50px;
+  width: 25%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.signin-label {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(36, 35, 35);
+}
+
+.sigin-input {
+  padding: 10px;
+  font-size: 20px;
+  width: 350px;
+  margin-top: 3px;
+  margin-bottom: 20px;
+  outline: none;
+  border: none;
+  border-bottom: #10b981 1px solid;
+  background-color: #f9fafb;
+}
+
+.eye {
+  position: relative;
+  right: 4rem;
+}

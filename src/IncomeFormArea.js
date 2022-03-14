@@ -126,7 +126,6 @@ function IncomeFormArea({ monthValue }) {
                 list="flatNo"
                 onChange={(e) => handleInputChange(e, i)}
                 onFocus={(e) => handleFocus(e, i)}
-                required
               />
 
               <input
