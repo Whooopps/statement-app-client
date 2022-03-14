@@ -5,6 +5,7 @@ import moment from "moment";
 import { useListener } from "./effects/use-event";
 import { Events } from "./constants/Events";
 import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 
 function App() {
   const fullDate = moment().format("YYYY-MM");

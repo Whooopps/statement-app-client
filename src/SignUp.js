@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-function SignIn() {
+function SignUp() {
   const [isHidded, setIsHidded] = useState(true);
   return (
     <>
       <div className="flex-container">
         <div>
-          <h1 className="login">Log In</h1>
+          <h1 className="login">Sign Up</h1>
         </div>
         <form action="" className="form">
           <div>
@@ -49,10 +49,10 @@ function SignIn() {
             </div>
           </div>
           <div className="btn-box">
-            <button className="btn">Sign In</button>
+            <button className="btn">Sign Up</button>
           </div>
           <div>
-            <h5 style={{ textAlign: "center" }}>New User? Sign up!</h5>
+            <h5 style={{ textAlign: "center" }}>Existing User? Sign in!</h5>
           </div>
         </form>
       </div>
@@ -60,4 +60,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default SignUp;
