@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function SignUp() {
   const [isHidded, setIsHidded] = useState(true);
@@ -52,7 +53,9 @@ function SignUp() {
             <button className="btn">Sign Up</button>
           </div>
           <div>
-            <h5 style={{ textAlign: "center" }}>Existing User? Sign in!</h5>
+            <Link to="/signin" className="exist-new-user">
+              <h4>Existing User? Sign in!</h4>
+            </Link>
           </div>
         </form>
       </div>
