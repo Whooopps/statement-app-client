@@ -6,17 +6,31 @@ import reportWebVitals from "./reportWebVitals";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import { positions, Provider as AlertProvider, transitions } from "react-alert";
+import AlertTemplate from "react-alert-template-basic";
+import { AuthProvider } from "./effects/use-auth";
+import { AxiosProvider } from "./effects/use-axios";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/signin" element={<SignIn />} />
+      <AlertProvider
+        template={AlertTemplate}
+        position={positions.TOP_RIGHT}
+        timeout={5000}
+      >
+        <AuthProvider>
+          <AxiosProvider>
+            <Routes>
+              <Route path="/signin" element={<SignIn />} />
 
-        <Route path="/signup" element={<SignUp />} />
+              <Route path="/signup" element={<SignUp />} />
 
-        <Route path="/*" element={<App />} />
-      </Routes>
+              <Route path="/*" element={<App />} />
+            </Routes>
+          </AxiosProvider>
+        </AuthProvider>
+      </AlertProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

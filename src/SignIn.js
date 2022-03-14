@@ -1,26 +1,75 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAlert } from "react-alert";
+import isEmail from "validator/lib/isEmail";
+import { useForm } from "react-hook-form";
+import { useNonAuthProtected, useSetAuth } from "./effects/use-auth";
+import { useAxios } from "./effects/use-axios";
 
 function SignIn() {
-  const [isHidded, setIsHidded] = useState(true);
+  useNonAuthProtected();
+  const setAuth = useSetAuth();
+  const axios = useAxios();
+  const navigate = useNavigate();
+  let [isHidded, setIsHidded] = useState(true);
+  const alert = useAlert();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({ mode: "onTouched" });
+
+  async function onSubmit(data) {
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/login", {
+        username: data.email,
+        password: data.password,
+      });
+      const { token } = response.data.accessToken;
+      localStorage.setItem("token", token);
+      setAuth(true);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  function renderError(condition, message) {
+    if (condition) {
+      return <p style={{ color: "red" }}>{message}</p>;
+    }
+    return null;
+  }
+
   return (
     <>
       <div className="flex-container">
         <div>
           <h1 className="login">Log In</h1>
         </div>
-        <form action="" className="form">
+        <form onSubmit={handleSubmit(onSubmit)} className="form">
           <div>
             <label htmlFor="email" className="signin-label">
               Email
             </label>
             <div>
               <input
-                type="text"
-                name="email"
-                id="email"
                 className="sigin-input"
+                {...register("email", {
+                  required: true,
+                  validate: {
+                    email: (v) => isEmail(v),
+                  },
+                })}
               />
+              {renderError(
+                errors.email?.type === "required",
+                "Email is Required"
+              )}
+              {renderError(
+                errors.email?.type === "email",
+                "Email is Not Valid"
+              )}
             </div>
           </div>
           <div>
@@ -30,10 +79,12 @@ function SignIn() {
             <div>
               <input
                 type={isHidded ? "password" : "text"}
-                name="password"
-                id="password"
                 className="sigin-input"
+                {...register("password", {
+                  required: true,
+                })}
               />
+
               {isHidded ? (
                 <i
                   className="fa fa-eye eye"
@@ -46,6 +97,10 @@ function SignIn() {
                   aria-hidden="true"
                   onClick={() => setIsHidded(!isHidded)}
                 ></i>
+              )}
+              {renderError(
+                errors.password?.type === "required",
+                "Password is required"
               )}
             </div>
           </div>
