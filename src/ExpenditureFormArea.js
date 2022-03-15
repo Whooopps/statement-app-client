@@ -3,8 +3,11 @@ import autosize from "autosize";
 import moment from "moment";
 import { useListener, useDispatch } from "./effects/use-event";
 import { Events } from "./constants/Events";
+import { useAuthProtected } from "./effects/use-auth";
 
 function ExpenditureFormArea({ monthValue }) {
+  useAuthProtected();
+
   const monthName = moment(monthValue, "YYYY-MM").format("MMM, YYYY");
 
   const nextMonth = moment(monthValue, "YYYY-MM")
@@ -100,7 +103,6 @@ function ExpenditureFormArea({ monthValue }) {
     list.splice(index, 1);
     setInputList(list);
   };
-
   return (
     <div className="expenditure-table">
       <h1 className="header">Expenditure - {monthName}</h1>

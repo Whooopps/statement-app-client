@@ -4,8 +4,10 @@ import { useDispatch } from "./effects/use-event";
 import { Events } from "./constants/Events";
 import { flatNo } from "./autocomplete-values/flatNumbers";
 import { NAMES } from "./autocomplete-values/names";
+import { useAuthProtected } from "./effects/use-auth";
 
 function IncomeFormArea({ monthValue }) {
+  useAuthProtected();
   const monthName = moment(monthValue, "YYYY-MM").format("MMM, YYYY");
   const currDate = moment().format("D-M-YYYY");
   const [total, setTotal] = useState(0);

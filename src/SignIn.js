@@ -12,7 +12,6 @@ function SignIn() {
   const axios = useAxios();
   const navigate = useNavigate();
   let [isHidded, setIsHidded] = useState(true);
-  const alert = useAlert();
   const {
     register,
     handleSubmit,
@@ -25,8 +24,7 @@ function SignIn() {
         username: data.email,
         password: data.password,
       });
-      const { token } = response.data.accessToken;
-      localStorage.setItem("token", token);
+      localStorage.setItem("token", response.data.accessToken);
       setAuth(true);
       navigate("/");
     } catch (err) {
@@ -105,7 +103,9 @@ function SignIn() {
             </div>
           </div>
           <div className="btn-box">
-            <button className="btn">Sign In</button>
+            <button className="btn" disabled={isSubmitting} type="submit">
+              Log In
+            </button>
           </div>
           <div>
             <Link to="/signup" className="exist-new-user">

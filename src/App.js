@@ -6,8 +6,10 @@ import { useListener } from "./effects/use-event";
 import { Events } from "./constants/Events";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import { useAuthProtected } from "./effects/use-auth";
 
 function App() {
+  useAuthProtected();
   const fullDate = moment().format("YYYY-MM");
   const [monthValue, setMonthValue] = useState(fullDate);
   const [incomeToDelete, setIncomeToDelete] = useState([]);
