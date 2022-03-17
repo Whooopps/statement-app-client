@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAlert } from "react-alert";
 import isEmail from "validator/lib/isEmail";
 import { useForm } from "react-hook-form";
 import { useNonAuthProtected, useSetAuth } from "./effects/use-auth";

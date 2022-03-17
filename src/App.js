@@ -8,8 +8,6 @@ import { useAuthProtected } from "./effects/use-auth";
 import { useAxios } from "./effects/use-axios";
 import { useDispatch } from "./effects/use-event";
 import { useAlert } from "react-alert";
-import { useLocation, useNavigate } from "react-router-dom";
-import useQueryParams from "./effects/use-query-params";
 
 function App() {
   useAuthProtected();
@@ -23,11 +21,8 @@ function App() {
   const [cf, setCF] = useState(0);
   const [nxtCF, setNxtCF] = useState(0);
   const alert = useAlert();
-  const navigate = useNavigate();
   const axios = useAxios();
   const dispatcher = useDispatch();
-  const query = useQueryParams();
-  const location = useLocation();
 
   const handelMonthChange = (e) => {
     e.preventDefault();
