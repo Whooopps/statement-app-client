@@ -20,7 +20,7 @@ function SignIn() {
 
   async function onSubmit(data) {
     try {
-      const response = await axios.post("http://127.0.0.1:8000/login", {
+      const response = await axios.post("/login", {
         username: data.email,
         password: data.password,
       });
@@ -52,6 +52,7 @@ function SignIn() {
             </label>
             <div>
               <input
+                autoComplete="on"
                 className="sigin-input"
                 {...register("email", {
                   required: true,

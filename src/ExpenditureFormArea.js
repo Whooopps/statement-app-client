@@ -25,11 +25,10 @@ function ExpenditureFormArea({ monthValue }) {
   const [inputList, setInputList] = useState([
     {
       expenseName: "",
-      vrNo: "",
+      vrNo: 0,
       expenseDate: currDate,
       expenseAmount: 0,
       expenseReason: "",
-      createdAt: monthValue,
       id: null,
     },
   ]);
@@ -40,11 +39,10 @@ function ExpenditureFormArea({ monthValue }) {
       ...inputList,
       {
         expenseName: "",
-        vrNo: "",
+        vrNo: 0,
         expenseDate: currDate,
         expenseAmount: 0,
         expenseReason: "",
-        createdAt: monthValue,
         id: null,
       },
     ]);
@@ -103,6 +101,39 @@ function ExpenditureFormArea({ monthValue }) {
     list.splice(index, 1);
     setInputList(list);
   };
+
+  useEffect(() => {
+    dispatcher(Events.EXPENSE_LIST, inputList);
+  }, [inputList]);
+
+  useListener(
+    Events.API_RESPONSE,
+    useCallback((res) => {
+      const expense = res.data.expense;
+      const cfData = res.data.cf;
+      if (expense.length === 0) {
+        setInputList([
+          {
+            expenseName: "",
+            vrNo: 0,
+            expenseDate: currDate,
+            expenseAmount: 0,
+            expenseReason: "",
+            id: null,
+          },
+        ]);
+        setNextMonthCF(0);
+      } else {
+        setInputList(expense);
+        setNextMonthCF(cfData.nextMonthCF);
+      }
+    })
+  );
+
+  useEffect(() => {
+    dispatcher(Events.NEXT_MONTH_CF, nextMonthCF);
+  }, [nextMonthCF]);
+
   return (
     <div className="expenditure-table">
       <h1 className="header">Expenditure - {monthName}</h1>
@@ -128,7 +159,7 @@ function ExpenditureFormArea({ monthValue }) {
                 name="expenseName"
                 onChange={(e) => handleInputChange(e, i)}
                 placeholder="Expense Name"
-                value={x.expenseName}
+                value={x.expenseName || ""}
               />
               <input
                 type="number"
@@ -136,7 +167,7 @@ function ExpenditureFormArea({ monthValue }) {
                 name="vrNo"
                 onChange={(e) => handleInputChange(e, i)}
                 placeholder="VR No."
-                value={x.vrNo}
+                value={x.vrNo || 0}
               />
 
               <input
@@ -145,7 +176,7 @@ function ExpenditureFormArea({ monthValue }) {
                 name="Date"
                 onChange={(e) => handleInputChange(e, i)}
                 placeholder="Date"
-                value={x.expenseDate}
+                value={x.expenseDate || ""}
               />
 
               <input
@@ -154,7 +185,7 @@ function ExpenditureFormArea({ monthValue }) {
                 name="expenseAmount"
                 onChange={(e) => handleInputChange(e, i)}
                 placeholder="Amount"
-                value={x.expenseAmount}
+                value={x.expenseAmount || 0}
               />
               <textarea
                 ref={reasonTextAreaRef}
@@ -162,7 +193,7 @@ function ExpenditureFormArea({ monthValue }) {
                 name="expenseReason"
                 onChange={(e) => handleInputChange(e, i)}
                 placeholder="Purpose"
-                value={x.expenseReason}
+                value={x.expenseReason || ""}
               />
 
               {inputList.length !== 1 ? (

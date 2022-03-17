@@ -21,7 +21,7 @@ function SignUp() {
 
   async function validateEmail(value) {
     try {
-      const response = await axios.post("http://127.0.0.1:8000/checkemail", {
+      const response = await axios.post("/checkemail", {
         email: value,
       });
       return response.data.valid || "Email is already taken";
@@ -33,7 +33,7 @@ function SignUp() {
 
   async function onSubmit(data) {
     try {
-      const response = await axios.post("http://127.0.0.1:8000/users", {
+      const response = await axios.post("/users", {
         email: data.email,
         password: data.password,
       });

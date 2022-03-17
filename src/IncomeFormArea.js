@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import moment from "moment";
-import { useDispatch } from "./effects/use-event";
+import { useDispatch, useListener } from "./effects/use-event";
 import { Events } from "./constants/Events";
 import { flatNo } from "./autocomplete-values/flatNumbers";
 import { NAMES } from "./autocomplete-values/names";
@@ -15,10 +15,9 @@ function IncomeFormArea({ monthValue }) {
   const [columnData, setColumnData] = useState([
     {
       name: "",
-      flat: "",
+      flatNo: "",
       amount: 0,
       date: currDate,
-      createdAt: monthValue,
       id: null,
     },
   ]);
@@ -56,10 +55,9 @@ function IncomeFormArea({ monthValue }) {
       ...columnData,
       {
         name: "",
-        flat: "",
+        flatNo: "",
         amount: 0,
         date: currDate,
-        createdAt: monthValue,
         id: null,
       },
     ]);
@@ -73,6 +71,36 @@ function IncomeFormArea({ monthValue }) {
     list.splice(index, 1);
     setColumnData(list);
   };
+  useEffect(() => {
+    dispatcher(Events.INCOME_LIST, columnData);
+  }, [columnData]);
+
+  useListener(
+    Events.API_RESPONSE,
+    useCallback((res) => {
+      const income = res.data.income;
+      const cfData = res.data.cf;
+      if (income.length === 0) {
+        setColumnData([
+          {
+            name: "",
+            flatNo: "",
+            amount: 0,
+            date: currDate,
+            id: null,
+          },
+        ]);
+        setCarryForward(0);
+      } else {
+        setColumnData(income);
+        setCarryForward(cfData.cf);
+      }
+    })
+  );
+
+  useEffect(() => {
+    dispatcher(Events.CARRY_FORWARD, carryForward);
+  }, [carryForward]);
 
   return (
     <>
@@ -114,7 +142,7 @@ function IncomeFormArea({ monthValue }) {
                 id="name"
                 list="ownerName"
                 placeholder="Name"
-                value={x.name}
+                value={x.name || ""}
                 onChange={(e) => handleInputChange(e, i)}
                 onFocus={(e) => handleFocus(e, i)}
               />
@@ -122,9 +150,9 @@ function IncomeFormArea({ monthValue }) {
               <input
                 className="input-fields no-fields"
                 type="number"
-                name="flat"
+                name="flatNo"
                 placeholder="Flat"
-                value={x.flat}
+                value={x.flatNo || ""}
                 list="flatNo"
                 onChange={(e) => handleInputChange(e, i)}
                 onFocus={(e) => handleFocus(e, i)}
@@ -135,7 +163,7 @@ function IncomeFormArea({ monthValue }) {
                 type="number"
                 name="amount"
                 placeholder="Amount"
-                value={x.amount}
+                value={x.amount || 0}
                 onChange={(e) => handleInputChange(e, i)}
               />
               <input
@@ -143,7 +171,7 @@ function IncomeFormArea({ monthValue }) {
                 type="text"
                 name="date"
                 placeholder="Date"
-                value={x.date}
+                value={x.date || ""}
                 onChange={(e) => handleInputChange(e, i)}
               />
               {columnData.length !== 1 ? (
@@ -163,7 +191,7 @@ function IncomeFormArea({ monthValue }) {
             type="number"
             name="total"
             className="input-fields no-fields income-total"
-            value={total}
+            value={total || 0}
             readOnly
           />
         </div>

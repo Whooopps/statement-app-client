@@ -41,6 +41,7 @@ input::-webkit-inner-spin-button {
 }
 
 .input-fields {
+  width: 19rem;
   margin-left: 3rem;
   padding: 4px;
   font-size: 20px;
@@ -82,19 +83,19 @@ input::-webkit-inner-spin-button {
 }
 
 .date {
-  left: 26rem;
+  left: 29rem;
 }
 
 .amount {
-  left: 22rem;
+  left: 25.3rem;
 }
 
 .flat {
-  left: 17rem;
+  left: 20.5rem;
 }
 
 .name {
-  left: 8.5rem;
+  left: 10rem;
 }
 
 .number {
@@ -167,12 +168,12 @@ input::-webkit-inner-spin-button {
 
 .income-total {
   position: relative;
-  left: 23.7rem;
+  left: 26.7rem;
 }
 
 .income-total-label {
   position: relative;
-  left: 23rem;
+  left: 26rem;
 }
 
 .header-container {
@@ -181,7 +182,7 @@ input::-webkit-inner-spin-button {
 
 .CF {
   position: relative;
-  left: 23.9rem;
+  left: 27rem;
 }
 
 .expense-total-label {
