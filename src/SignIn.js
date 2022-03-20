@@ -19,7 +19,7 @@ function SignIn() {
 
   async function onSubmit(data) {
     try {
-      const response = await axios.post("/login", {
+      const response = await axios.post("api/login", {
         username: data.email,
         password: data.password,
       });

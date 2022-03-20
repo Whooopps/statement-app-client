@@ -33,7 +33,7 @@ function App() {
   useEffect(() => {
     async function getTable() {
       try {
-        const response = await axios.get(`/table/${monthValue}`);
+        const response = await axios.get(`api/table/${monthValue}`);
         dispatcher(Events.API_RESPONSE, response);
       } catch (error) {
         console.log(error);
@@ -99,8 +99,8 @@ function App() {
 
     try {
       setIncomeToDelete((prev) => []);
-      const response = await axios.post("/table", payload);
-      const res = await axios.delete("/table", {
+      const response = await axios.post("api/table", payload);
+      const res = await axios.delete("api/table", {
         data: {
           income: incomeToDelete,
           expense: expenseToDelete,
@@ -113,12 +113,6 @@ function App() {
     } catch (error) {
       console.log(error);
     }
-  }
-
-  async function handleDownload(e) {
-    e.preventDefault();
-    const res = await axios.get("/table/xlsx/");
-    console.log(res);
   }
 
   return (
@@ -150,7 +144,7 @@ function App() {
           </button>
         </div>
       </form>
-      <div>
+      <div className="btn-download-box">
         <a
           className="btn"
           href={`${process.env.REACT_APP_XLSX_DOWNLOAD_URL}${monthValue}`}

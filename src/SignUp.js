@@ -21,7 +21,7 @@ function SignUp() {
 
   async function validateEmail(value) {
     try {
-      const response = await axios.post("/checkemail", {
+      const response = await axios.post("api/checkemail", {
         email: value,
       });
       return response.data.valid || "Email is already taken";
@@ -33,7 +33,7 @@ function SignUp() {
 
   async function onSubmit(data) {
     try {
-      const response = await axios.post("/users", {
+      const response = await axios.post("api/users", {
         email: data.email,
         password: data.password,
       });
