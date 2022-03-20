@@ -5,11 +5,11 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import SignIn from "./SignIn";
-import SignUp from "./SignUp";
-import { positions, Provider as AlertProvider, transitions } from "react-alert";
+import { positions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 import { AuthProvider } from "./effects/use-auth";
 import { AxiosProvider } from "./effects/use-axios";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,10 +23,9 @@ ReactDOM.render(
           <AxiosProvider>
             <Routes>
               <Route path="/signin" element={<SignIn />} />
-
-              <Route path="/signup" element={<SignUp />} />
-
-              <Route path="/*" element={<App />} />
+              <Route element={<ProtectedRoutes />}>
+                <Route path="/*" element={<App />} />
+              </Route>
             </Routes>
           </AxiosProvider>
         </AuthProvider>

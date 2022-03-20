@@ -2,12 +2,9 @@ import axios from "axios";
 import { createContext, useContext, useMemo } from "react";
 import { useAlert } from "react-alert";
 import { useSetAuth } from "./use-auth";
-import { useNavigate } from "react-router-dom";
-
 const AxiosContext = createContext(null);
 
 export function AxiosProvider({ children }) {
-  const navigate = useNavigate();
   const setAuth = useSetAuth();
   const alert = useAlert();
 

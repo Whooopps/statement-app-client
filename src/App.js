@@ -33,56 +33,60 @@ function App() {
   useEffect(() => {
     async function getTable() {
       try {
-        const response = await axios.get(`api/table/${monthValue}`);
+        const response = await axios.get(`/api/table/${monthValue}`);
         dispatcher(Events.API_RESPONSE, response);
       } catch (error) {
         console.log(error);
       }
     }
     getTable();
-  }, [monthValue, getTable]);
+  }, [monthValue, getTable, axios, dispatcher]);
 
   useListener(
     Events.INCOME_ID,
-    useCallback((id) => {
-      return setIncomeToDelete((prevArray) => [...incomeToDelete, id]);
-    }),
-    []
+    useCallback(
+      (id) => {
+        return setIncomeToDelete((prevArray) => [...incomeToDelete, id]);
+      },
+      [incomeToDelete]
+    )
   );
 
   useListener(
     Events.EXPENSE_ID,
-    useCallback((id) => {
-      return setExpenseToDelete((prevArray) => [...expenseToDelete, id]);
-    }),
-    []
+    useCallback(
+      (id) => {
+        return setExpenseToDelete((prevArray) => [...expenseToDelete, id]);
+      },
+      [expenseToDelete]
+    )
   );
 
   useListener(
     Events.EXPENSE_LIST,
     useCallback((list) => {
       return setExpenseList(list);
-    })
+    }, [])
   );
   useListener(
     Events.INCOME_LIST,
     useCallback((list) => {
       return setIncomeList(list);
-    })
+    }, [])
   );
 
   useListener(
     Events.CARRY_FORWARD,
     useCallback((cf) => {
       return setCF(cf);
-    })
+    }, [])
   );
 
   useListener(
     Events.NEXT_MONTH_CF,
     useCallback((nxtCF) => {
       return setNxtCF(nxtCF);
-    })
+    }, [])
   );
 
   async function handleSubmit(e) {
@@ -99,8 +103,8 @@ function App() {
 
     try {
       setIncomeToDelete((prev) => []);
-      const response = await axios.post("api/table", payload);
-      const res = await axios.delete("api/table", {
+      await axios.post("/api/table", payload);
+      await axios.delete("/api/table", {
         data: {
           income: incomeToDelete,
           expense: expenseToDelete,
@@ -133,6 +137,7 @@ function App() {
           }}
         />
       </div>
+
       <form onSubmit={handleSubmit}>
         <div className="grid-container">
           <IncomeFormArea monthValue={monthValue} />

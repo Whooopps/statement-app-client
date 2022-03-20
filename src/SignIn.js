@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import isEmail from "validator/lib/isEmail";
 import { useForm } from "react-hook-form";
 import { useNonAuthProtected, useSetAuth } from "./effects/use-auth";
@@ -19,7 +19,7 @@ function SignIn() {
 
   async function onSubmit(data) {
     try {
-      const response = await axios.post("api/login", {
+      const response = await axios.post("/api/login", {
         username: data.email,
         password: data.password,
       });
@@ -106,11 +106,6 @@ function SignIn() {
             <button className="btn" disabled={isSubmitting} type="submit">
               Log In
             </button>
-          </div>
-          <div>
-            <Link to="/signup" className="exist-new-user">
-              <h4>New User? Sign up!</h4>
-            </Link>
           </div>
         </form>
       </div>
