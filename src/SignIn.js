@@ -52,7 +52,7 @@ function SignIn() {
             <div>
               <input
                 autoComplete="on"
-                className="sigin-input"
+                className="signin-input"
                 {...register("email", {
                   required: true,
                   validate: {
@@ -77,7 +77,7 @@ function SignIn() {
             <div>
               <input
                 type={isHidded ? "password" : "text"}
-                className="sigin-input"
+                className="signin-input"
                 {...register("password", {
                   required: true,
                 })}

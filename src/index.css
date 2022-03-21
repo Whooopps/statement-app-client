@@ -15,15 +15,18 @@ input::-webkit-inner-spin-button {
 }
 
 .grid-container {
-  display: grid;
-  grid-template-columns: 0.77fr 1fr;
-  grid-gap: 5px;
+  display: inline-grid;
+  /* grid-template-columns: 0.66fr 1fr; */
+  grid-template-columns: auto auto;
+  grid-gap: 25px;
+
   align-items: flex-start;
 }
 
 .income-table {
   margin-top: 10rem;
   margin-left: 1rem;
+  min-width: 750px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   user-select: none;
 }
@@ -31,6 +34,7 @@ input::-webkit-inner-spin-button {
 .expenditure-table {
   margin-top: 10rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  min-width: 1070px;
   user-select: none;
 }
 
@@ -41,12 +45,13 @@ input::-webkit-inner-spin-button {
 }
 
 .input-fields {
-  width: 19rem;
+  width: 15rem;
   margin-left: 3rem;
   padding: 4px;
   font-size: 20px;
   user-select: none;
   text-align: center;
+  text-transform: capitalize;
 }
 .no-fields {
   width: 105px;
@@ -65,7 +70,6 @@ input::-webkit-inner-spin-button {
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-left: -14.3rem;
 }
 
 .btn {
@@ -92,19 +96,19 @@ input::-webkit-inner-spin-button {
 }
 
 .date {
-  left: 29rem;
+  left: 25.5rem;
 }
 
 .amount {
-  left: 25.3rem;
+  left: 21.7rem;
 }
 
 .flat {
-  left: 20.5rem;
+  left: 17rem;
 }
 
 .name {
-  left: 10rem;
+  left: 8rem;
 }
 
 .number {
@@ -126,6 +130,7 @@ input::-webkit-inner-spin-button {
   text-align: center;
   resize: none;
   overflow: hidden;
+  text-transform: capitalize;
 }
 
 .textarea-no-fields {
@@ -160,7 +165,8 @@ input::-webkit-inner-spin-button {
 .month-input-box {
   text-align: center;
   position: relative;
-  right: 12rem;
+  /* right: 12rem; */
+  margin: 0 auto;
   user-select: none;
 }
 
@@ -177,12 +183,12 @@ input::-webkit-inner-spin-button {
 
 .income-total {
   position: relative;
-  left: 26.7rem;
+  left: 22.7rem;
 }
 
 .income-total-label {
   position: relative;
-  left: 26rem;
+  left: 23rem;
 }
 
 .header-container {
@@ -191,7 +197,7 @@ input::-webkit-inner-spin-button {
 
 .CF {
   position: relative;
-  left: 27rem;
+  left: 23.3rem;
 }
 
 .expense-total-label {
@@ -219,6 +225,11 @@ input::-webkit-inner-spin-button {
   position: relative;
   top: 1.6rem;
 }
+.btn-submit-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .btn-submit {
   background-color: #4b86de;
@@ -227,10 +238,8 @@ input::-webkit-inner-spin-button {
   width: 150px;
   padding: 10px;
   border: none;
+  margin: 1rem;
   border-radius: 6px;
-  margin: 2rem;
-  position: relative;
-  left: 46rem;
   cursor: pointer;
 }
 
@@ -268,10 +277,9 @@ input::-webkit-inner-spin-button {
   color: rgb(36, 35, 35);
 }
 
-.sigin-input {
+.signin-input {
   padding: 10px;
   font-size: 20px;
-  width: 350px;
   margin-top: 3px;
   margin-bottom: 20px;
   outline: none;
@@ -294,20 +302,213 @@ input::-webkit-inner-spin-button {
   text-decoration: underline;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
   body {
-    font-size: 10px;
+    font-size: 15px;
   }
 
   .grid-container {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: none;
     grid-gap: 5px;
-    align-items: flex-start;
+  }
+
+  .income-table {
+    min-width: 100px;
   }
 
   .input-fields {
-    width: 45px;
-    font-size: 10px;
+    font-size: 20px;
+    width: 17rem;
+    margin: 13px;
+    margin-left: 12rem;
+  }
+  .no-fields {
+    width: 110px;
+    margin: 1rem;
+  }
+
+  .column-heading {
+    font-size: 25px;
+  }
+  .name {
+    left: 19rem;
+  }
+  .flat {
+    left: 29rem;
+  }
+  .amount {
+    left: 33.5rem;
+  }
+  .date {
+    left: 38rem;
+  }
+
+  .CF {
+    left: 35.5rem;
+  }
+
+  .income-total {
+    left: 35rem;
+  }
+
+  .income-total-label {
+    left: 35rem;
+  }
+
+  .btn {
+    font-size: 20px;
+    padding: 10px;
+    width: 7rem;
+  }
+
+  .expenditure-table {
+    margin-top: 5rem;
+    min-width: 200px;
+  }
+
+  .text-area-field {
+    font-size: 20px;
+    width: 13rem;
+    margin: 10px;
+    margin-left: 4rem;
+  }
+  .textarea-no-fields {
+    width: 120px;
+  }
+  .expName {
+    left: 5rem;
+  }
+  .vrNo {
+    left: 12.5rem;
+  }
+  .expDate {
+    left: 20.5rem;
+  }
+  .expAmount {
+    left: 28.5rem;
+  }
+  .expReason {
+    left: 37rem;
+  }
+  .expense-total-label {
+    left: 26rem;
+  }
+  .expense-total {
+    left: 25.5rem;
+  }
+  .next-month-cf {
+    left: 20rem;
+  }
+  .next-month-cf-label {
+    left: 20.5rem;
+  }
+  .btn-submit {
+    font-size: 20px;
+    width: 7rem;
+    padding: 7px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 13px;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: none;
+    grid-gap: 5px;
+  }
+
+  .input-fields {
+    font-size: 15px;
+    width: 15rem;
+    margin: 13px;
+    margin-left: 3rem;
+  }
+  .no-fields {
+    width: 80px;
+    margin: 1rem;
+  }
+
+  .column-heading {
+    font-size: 20px;
+  }
+  .name {
+    left: 9rem;
+  }
+  .flat {
+    left: 17.5rem;
+  }
+  .amount {
+    left: 21.5rem;
+  }
+  .date {
+    left: 25rem;
+  }
+
+  .CF {
+    left: 23.5rem;
+  }
+
+  .income-total {
+    left: 23rem;
+  }
+
+  .income-total-label {
+    left: 23rem;
+  }
+
+  .btn {
+    font-size: 18px;
+    padding: 5px;
+    width: 6rem;
+  }
+
+  .expenditure-table {
+    margin-top: 5rem;
+  }
+
+  .text-area-field {
+    font-size: 15px;
+    width: 130px;
+    margin: 10px;
+    margin-left: 2.3rem;
+  }
+  .textarea-no-fields {
+    width: 80px;
+  }
+  .expName {
+    left: 2rem;
+  }
+  .vrNo {
+    left: 6rem;
+  }
+  .expDate {
+    left: 10.5rem;
+  }
+  .expAmount {
+    left: 15rem;
+  }
+  .expReason {
+    left: 20rem;
+  }
+  .expense-total-label {
+    left: 26rem;
+  }
+  .expense-total {
+    left: 25.5rem;
+  }
+  .next-month-cf {
+    left: 20rem;
+  }
+  .next-month-cf-label {
+    left: 20.5rem;
+  }
+  .btn-submit {
+    font-size: 20px;
+    width: 6rem;
+    padding: 6px;
   }
 }

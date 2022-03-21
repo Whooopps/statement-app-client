@@ -143,7 +143,7 @@ function App() {
           <IncomeFormArea monthValue={monthValue} />
           <ExpenditureFormArea monthValue={monthValue} />
         </div>
-        <div>
+        <div className="btn-submit-box">
           <button type="submit" className="btn-submit">
             Save
           </button>
