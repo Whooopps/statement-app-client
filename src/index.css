@@ -267,7 +267,7 @@ input::-webkit-inner-spin-button {
 .form {
   margin-top: 10px;
   padding: 50px;
-  width: 25%;
+  width: fit-content;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -281,6 +281,7 @@ input::-webkit-inner-spin-button {
   padding: 10px;
   font-size: 20px;
   margin-top: 3px;
+  width: 350px;
   margin-bottom: 20px;
   outline: none;
   border: none;
@@ -309,19 +310,15 @@ input::-webkit-inner-spin-button {
 
   .grid-container {
     display: grid;
-    grid-template-columns: none;
+    grid-template-columns: max-content;
     grid-gap: 5px;
-  }
-
-  .income-table {
-    min-width: 100px;
   }
 
   .input-fields {
     font-size: 20px;
     width: 17rem;
     margin: 13px;
-    margin-left: 12rem;
+    margin-left: 7rem;
   }
   .no-fields {
     width: 110px;
@@ -332,28 +329,28 @@ input::-webkit-inner-spin-button {
     font-size: 25px;
   }
   .name {
-    left: 19rem;
+    left: 13.5rem;
   }
   .flat {
-    left: 29rem;
+    left: 23.5rem;
   }
   .amount {
-    left: 33.5rem;
+    left: 28.7rem;
   }
   .date {
-    left: 38rem;
+    left: 33rem;
   }
 
   .CF {
-    left: 35.5rem;
+    left: 30.5rem;
   }
 
   .income-total {
-    left: 35rem;
+    left: 29.7rem;
   }
 
   .income-total-label {
-    left: 35rem;
+    left: 30rem;
   }
 
   .btn {
@@ -364,12 +361,11 @@ input::-webkit-inner-spin-button {
 
   .expenditure-table {
     margin-top: 5rem;
-    min-width: 200px;
   }
 
   .text-area-field {
     font-size: 20px;
-    width: 13rem;
+    width: 10rem;
     margin: 10px;
     margin-left: 4rem;
   }
@@ -377,31 +373,31 @@ input::-webkit-inner-spin-button {
     width: 120px;
   }
   .expName {
-    left: 5rem;
+    left: 4rem;
   }
   .vrNo {
-    left: 12.5rem;
+    left: 10rem;
   }
   .expDate {
-    left: 20.5rem;
+    left: 18rem;
   }
   .expAmount {
-    left: 28.5rem;
-  }
-  .expReason {
-    left: 37rem;
-  }
-  .expense-total-label {
-    left: 26rem;
-  }
-  .expense-total {
     left: 25.5rem;
   }
+  .expReason {
+    left: 33.5rem;
+  }
+  .expense-total-label {
+    left: 38rem;
+  }
+  .expense-total {
+    left: 37.5rem;
+  }
   .next-month-cf {
-    left: 20rem;
+    left: 30.5rem;
   }
   .next-month-cf-label {
-    left: 20.5rem;
+    left: 31rem;
   }
   .btn-submit {
     font-size: 20px;
@@ -415,9 +411,37 @@ input::-webkit-inner-spin-button {
     font-size: 13px;
   }
 
+  .month-input-box {
+    position: relative;
+    margin-top: 10px;
+  }
+
+  .month-input {
+    position: absolute;
+  }
+  .monthLabel {
+    line-height: 0.8;
+  }
+
+  .btn-download-box,
+  .btn-submit-box {
+    position: relative;
+  }
+  .btn-submit {
+    position: absolute;
+    top: 0px;
+    left: 30rem;
+  }
+
+  .btn-download-box > .btn {
+    position: absolute;
+    top: 5rem;
+    left: 31rem;
+  }
+
   .grid-container {
     display: grid;
-    grid-template-columns: none;
+    grid-template-columns: max-content;
     grid-gap: 5px;
   }
 
@@ -425,7 +449,7 @@ input::-webkit-inner-spin-button {
     font-size: 15px;
     width: 15rem;
     margin: 13px;
-    margin-left: 3rem;
+    margin-left: 7rem;
   }
   .no-fields {
     width: 80px;
@@ -436,28 +460,28 @@ input::-webkit-inner-spin-button {
     font-size: 20px;
   }
   .name {
-    left: 9rem;
+    left: 13rem;
   }
   .flat {
-    left: 17.5rem;
+    left: 22rem;
   }
   .amount {
-    left: 21.5rem;
+    left: 25.5rem;
   }
   .date {
-    left: 25rem;
+    left: 29rem;
   }
 
   .CF {
-    left: 23.5rem;
+    left: 27rem;
   }
 
   .income-total {
-    left: 23rem;
+    left: 27rem;
   }
 
   .income-total-label {
-    left: 23rem;
+    left: 27rem;
   }
 
   .btn {
@@ -474,41 +498,143 @@ input::-webkit-inner-spin-button {
     font-size: 15px;
     width: 130px;
     margin: 10px;
-    margin-left: 2.3rem;
+    margin-left: 5rem;
   }
   .textarea-no-fields {
     width: 80px;
   }
   .expName {
-    left: 2rem;
+    left: 5rem;
   }
   .vrNo {
-    left: 6rem;
+    left: 11rem;
   }
   .expDate {
-    left: 10.5rem;
+    left: 18rem;
   }
   .expAmount {
-    left: 15rem;
-  }
-  .expReason {
-    left: 20rem;
-  }
-  .expense-total-label {
-    left: 26rem;
-  }
-  .expense-total {
     left: 25.5rem;
   }
+  .expReason {
+    left: 33rem;
+  }
+  .expense-total-label {
+    left: 36rem;
+  }
+  .expense-total {
+    left: 35.7rem;
+  }
   .next-month-cf {
-    left: 20rem;
+    left: 30.5rem;
   }
   .next-month-cf-label {
-    left: 20.5rem;
+    left: 31rem;
   }
   .btn-submit {
     font-size: 20px;
     width: 6rem;
     padding: 6px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .input-fields {
+    margin-left: 5rem;
+  }
+  .text-area-field {
+    margin-left: 4rem;
+  }
+
+  .name {
+    left: 10rem;
+  }
+  .flat {
+    left: 24rem;
+  }
+  .amount {
+    left: 31.5rem;
+  }
+  .date {
+    left: 39rem;
+  }
+  .CF {
+    left: 29rem;
+  }
+  .income-total {
+    left: 29rem;
+  }
+  .income-total-label {
+    left: 32rem;
+  }
+  .next-month-cf-label {
+    left: 26.5rem;
+  }
+  .expense-total-label {
+    left: 32rem;
+  }
+  .expense-total {
+    left: 27.5rem;
+  }
+  .next-month-cf {
+    left: 22rem;
+  }
+  .expName {
+    left: 4rem;
+  }
+  .vrNo {
+    left: 9rem;
+  }
+  .expDate {
+    left: 15.5rem;
+  }
+  .expAmount {
+    left: 21.5rem;
+  }
+  .expReason {
+    left: 28rem;
+  }
+}
+
+@media screen and (max-width: 464px) {
+  .month-input-box {
+    position: relative;
+    margin-top: 10px;
+  }
+  .month-input {
+    position: absolute;
+    left: 25rem;
+  }
+  .monthLabel {
+    position: absolute;
+    font-size: 50px;
+    line-height: 0.9;
+  }
+
+  .signin-input {
+    width: 270px;
+  }
+  .form {
+    position: relative;
+  }
+  .eye {
+    position: absolute;
+    top: 12rem;
+    left: 19rem;
+  }
+
+  .btn-submit-box,
+  .btn-download-box {
+    position: relative;
+    margin: 1rem;
+  }
+  .btn-submit {
+    position: absolute;
+    top: 0px;
+    left: 29rem;
+  }
+  .btn-download-box > .btn {
+    position: absolute;
+    top: 3rem;
+    left: 30rem;
   }
 }

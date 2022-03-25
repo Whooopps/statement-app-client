@@ -173,7 +173,7 @@ function ExpenditureFormArea({ monthValue }) {
               <input
                 type="text"
                 className="text-area-field textarea-no-fields"
-                name="Date"
+                name="expenseDate"
                 onChange={(e) => handleInputChange(e, i)}
                 placeholder="Date"
                 value={x.expenseDate || ""}
